@@ -17,10 +17,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    @Bind(R.id.txtScaleX) TextView txtScaleX;
-    @Bind(R.id.txtScaleY) TextView txtScaleY;
-    @Bind(R.id.txtScaleZ) TextView txtScaleZ;
-    @Bind(R.id.text) TextView txtTypeOrien;
+    @Bind(R.id.txtScaleX)
+    TextView txtScaleX;
+    @Bind(R.id.txtScaleY)
+    TextView txtScaleY;
+    @Bind(R.id.txtScaleZ)
+    TextView txtScaleZ;
+    @Bind(R.id.text)
+    TextView txtTypeOrien;
 
     SensorManager sensorManager;
     Sensor sensor;
@@ -31,12 +35,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         getSupportFragmentManager().beginTransaction().add(R.id.container_fragment, new Myfragment()).commit();
-
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-
     }
 
     public void onResume() {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Class Show Value
     SensorEventListener accelListener = new SensorEventListener() {
-         public void onAccuracyChanged(Sensor sensor, int acc) {
+        public void onAccuracyChanged(Sensor sensor, int acc) {
 
         }
 
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 Myfragment mf = new Myfragment();
                 bundle.getString(KEY_ACTION, String.valueOf(txtTypeOrien.getText()));
                 mf.setArguments(bundle);
-                getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment,mf).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.container_fragment, mf).commit();
 
             } else if (x < 1 && (y > -0.99 && y < 0.99)) {
                 txtTypeOrien.setText("Right");
@@ -92,5 +93,4 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
-
 }
